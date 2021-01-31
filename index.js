@@ -9,7 +9,8 @@ require('./models/Product');
 const app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/node-react-starter`);
+mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://mitchberger106:os_user_1@cluster0.p1rwm.mongodb.net/opensponsorship?retryWrites=true&w=majority
+`);
 
 app.use(bodyParser.json());
 
