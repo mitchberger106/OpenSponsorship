@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { AgGridReact } from 'ag-grid-react';
 import profileService from "./services/profileService";
 import ProfileList from "./ProfileList";
+import ModalMain from './ModalMain'
 
 const App = () => {
   const [rowData, setRowData] = useState([]);
@@ -44,6 +45,10 @@ const App = () => {
           />
         </div>
         <button onClick={() => setAdding(true)}>Add Athlete</button>
+        <ModalMain
+          show={adding}
+          closeModal={() => setAdding(false)}
+          />
     </div>
   );
 }
