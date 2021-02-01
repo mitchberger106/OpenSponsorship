@@ -14,7 +14,17 @@ const ModalMain = (props) => {
     { id: "summary" },
   ];
 
-  const [formData, setForm] = useForm(null);
+  const defaultData = {
+    name: "",
+    sport: "",
+    gender: "",
+    dateOfBirth: "",
+    location: "",
+    team: "",
+    description: ""
+  };
+
+  const [formData, setForm] = useForm(defaultData);
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { id } = step;
 

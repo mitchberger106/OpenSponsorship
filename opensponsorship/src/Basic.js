@@ -11,17 +11,17 @@ const Basic = ({ setForm, formData, navigation }) => {
     <Form>
   <Form.Group controlId="formBasicName">
     <Form.Label>Name</Form.Label>
-    <Form.Control value={name} type="name" placeholder="Enter name" />
+    <Form.Control onChange = {setForm} value={name} type="text" placeholder="Enter name" />
   </Form.Group>
 
   <Form.Group controlId="formBasicSport">
     <Form.Label>Sport</Form.Label>
-    <Form.Control value={sport} type="sport" placeholder="Select Sport" />
+    <Form.Control onChange = {setForm} value={sport} type="text" placeholder="Select Sport" />
   </Form.Group>
 
   <Form.Group controlId="formBasicGender">
     <Form.Label>Gender</Form.Label>
-    <Form.Control value={gender} as="select">
+    <Form.Control value={gender} onChange = {setForm} as="select">
       <option>Male</option>
       <option>Female</option>
       <option>Other</option>
@@ -29,9 +29,9 @@ const Basic = ({ setForm, formData, navigation }) => {
   </Form.Group>
   <Form.Group controlId="formBasicDateOfBirth">
     <Form.Label>Date of birth</Form.Label>
-    <Form.Control value={dateOfBirth} type="dateOfBirth" placeholder="Enter date of birth" />
+    <Form.Control onChange = {setForm} value={dateOfBirth} type="text" placeholder="Enter date of birth" />
   </Form.Group>
-  <Button onClick={next} variant="primary" type="submit">
+  <Button className='float-right' onClick={next} variant="primary" type="submit">
     Next
   </Button>
 </Form>
