@@ -34,7 +34,7 @@ const Basic = ({ setForm, formData, navigation }) => {
     <Form.Control type="dateOfBirth" placeholder="Enter date of birth" />
   </Form.Group>
   <Button variant="primary" type="submit">
-    Submit
+    Next
   </Button>
 </Form>
   );

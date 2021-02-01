@@ -17,7 +17,7 @@ const ModalMain = (props) => {
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { id } = step;
 
-  const props = { formData, setForm, navigation };
+  const propsToPass = { formData, setForm, navigation };
 
     return(
         <div>
@@ -34,17 +34,17 @@ const ModalMain = (props) => {
         </Modal.Header>
         {id == "basic" &&
         <Modal.Body>
-          <Basic {...props} />
+          <Basic {...propsToPass} />
         </Modal.Body>
         }
         {id == "summary" &&
         <Modal.Body>
-          <Summary {...props} />
+          <Summary {...propsToPass} />
         </Modal.Body>
         }
         {id == "about" &&
         <Modal.Body>
-          <About {...props} />
+          <About {...propsToPass} />
         </Modal.Body>
         }
       </Modal>
