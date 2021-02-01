@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
-const profile = mongoose.model('profiles');
+const Profile = mongoose.model('profiles');
 
 module.exports = (app) => {
 
   app.get(`/api/profile`, async (req, res) => {
-    let profiles = await profile.find();
+    let profiles = await Profile.find();
     return res.status(200).send(profiles);
   });
 
   app.post(`/api/profile`, async (req, res) => {
-    let profile = await profile.create(req.body);
+    let profile = await Profile.create(req.body);
     return res.status(201).send({
       error: false,
       profile
@@ -19,7 +19,7 @@ module.exports = (app) => {
   app.put(`/api/profile/:id`, async (req, res) => {
     const {id} = req.params;
 
-    let profile = await profile.findByIdAndUpdate(id, req.body);
+    let profile = await Profile.findByIdAndUpdate(id, req.body);
 
     return res.status(202).send({
       error: false,
@@ -31,7 +31,7 @@ module.exports = (app) => {
   app.delete(`/api/profile/:id`, async (req, res) => {
     const {id} = req.params;
 
-    let profile = await profile.findByIdAndDelete(id);
+    let profile = await Profile.findByIdAndDelete(id);
 
     return res.status(202).send({
       error: false,

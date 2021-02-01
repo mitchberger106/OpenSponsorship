@@ -2,6 +2,7 @@ import React from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
 import { form } from "react-dom-factories";
+import profileService from "./services/profileService";
 
 const Summary = ({ setForm, formData, navigation }) => {
   const {
@@ -17,6 +18,7 @@ const Summary = ({ setForm, formData, navigation }) => {
 
   const submit = (formData) => {
       console.log(formData);
+      profileService.create(formData);
   }
 
   return (

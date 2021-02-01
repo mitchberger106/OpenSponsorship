@@ -5,14 +5,15 @@ export default {
     let res = await axios.get(`/api/profile`);
     return res.data || [];
   },
-  create: async (product) => {
-    await axios.post('/api/profile', product).then(res => {
+  create: async (profile) => {
+    console.log(profile)
+    await axios.post('/api/profile', profile).then(res => {
         console.log(res);
         console.log(res.data);
       });
   },
-  update: async (product) => {
-    await axios.put('/api/profile', product).then(res => {
+  update: async (profile) => {
+    await axios.put('/api/profile', profile).then(res => {
         console.log(res);
         console.log(res.data);
       });
