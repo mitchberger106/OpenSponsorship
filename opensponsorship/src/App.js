@@ -32,6 +32,10 @@ const App = () => {
     }   
   }, [rowData]);
 
+  const onProfileAdded = () => {
+    getGridData();
+  }
+
   return (
     <div className="App">
         <h3>Athlete profiles:</h3>
@@ -47,7 +51,8 @@ const App = () => {
         <Button onClick={() => setAdding(true)}>Add Athlete</Button>
         <ModalMain
           show={adding}
-          closeModal={() => setAdding(false)}
+          closeModal={() => {setAdding(false); onProfileAdded();}}
+          submit={() => onProfileAdded()}
           />
     </div>
   );

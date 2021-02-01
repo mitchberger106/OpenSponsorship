@@ -1,10 +1,11 @@
 import React from "react";
 import Button from 'react-bootstrap/Button';
+import { propTypes } from "react-bootstrap/esm/Image";
 import Form from 'react-bootstrap/Form'
-import { form } from "react-dom-factories";
+import { form, sub } from "react-dom-factories";
 import profileService from "./services/profileService";
 
-const Summary = ({ setForm, formData, navigation }) => {
+const Summary = ({ setForm, formData, navigation }, submitComplete) => {
   const {
     name,
     sport,
@@ -15,6 +16,7 @@ const Summary = ({ setForm, formData, navigation }) => {
     description
   } = formData;
   const { go } = navigation;
+  const { sub } = submitComplete;
 
   const submit = (formData) => {
       console.log(formData);
@@ -50,7 +52,7 @@ const Summary = ({ setForm, formData, navigation }) => {
         Description: {`${description}`},
       </div>
       <div>
-        <Button className='float-right' onClick={() => {submit(formData); go("basic")}}>Submit</Button>
+        <Button className='float-right' onClick={() => submit(formData)}>Submit</Button>
       </div>
     </div>
   );

@@ -50,7 +50,7 @@ const ModalMain = (props) => {
         }
         {id == "summary" &&
         <Modal.Body>
-          <Summary {...propsToPass} />
+          <Summary {...propsToPass} submitComplete={props.submit} />
         </Modal.Body>
         }
         {id == "about" &&
