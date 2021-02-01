@@ -30,7 +30,8 @@
     "express": "^4.17.1",
     "mongoose": "^5.11.14",
     "react-bootstrap": "^1.4.3",
-    "react-dom-factories": "^1.0.2"
+    "react-dom-factories": "^1.0.2",
+    "react-hooks-helper": "^1.6.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

@@ -4,6 +4,7 @@ import { Modal } from 'react-bootstrap'
 import Basic from "./Basic";
 import About from "./About";
 import Summary from "./Summary";
+import { useForm, useStep } from "react-hooks-helper";
 
 const ModalMain = (props) => {
 
@@ -13,7 +14,7 @@ const ModalMain = (props) => {
     { id: "summary" },
   ];
 
-  const [formData, setForm] = useForm(defaultData);
+  const [formData, setForm] = useForm(null);
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { id } = step;
 
