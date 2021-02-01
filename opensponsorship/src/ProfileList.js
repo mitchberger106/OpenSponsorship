@@ -1,86 +1,45 @@
 import React, { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import { AgGridReact } from 'ag-grid-react';
-
-// SERVICES
 import profileService from "./services/profileService";
+import { AgGridColumn } from "ag-grid-react/lib/agGridColumn";
+import { PropTypes } from "prop-types";
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-function App() {
-  const [profiles, setprofiles] = useState(null);
-  const [rowData, setRowData] = useState(null);
-  const [gridApi, setGridApi] = useState(null);
-  const [adding, setAdding] = useState(false);
+const ProfileList = (props) => {
 
-  useEffect(() => {
-    if(!profiles) {
-      getProfiles();
-    }
-  });
-
-  const getProfiles = async () => {
-    let res = await profileService.getAll();
-    console.log(res);
-    setprofiles(res);
-    setRowData({athlete:res.name, sport:res.sport, team:res.team, description:res.description});
-  }
-
-  const columnDefs = [
-    {
-      headerName: "Athlete",
-      field: "athlete"
-    },
-    {
-        headerName: "Sport(s)",
-        field: "sport"
-      },
-      {
-        headerName: "Team",
-        field: "team"
-      },
-      {
-          headerName: "Description",
-          field: "description"
-      }
-  ];
-
-  const createProfile = () => {
-    const profile = {name:"food", description:"you can eat it"};
-    profileService.create(profile);
-  }
-
-  const onGridReady = (params) => {
-    setGridApi(params.api)
-  }
-
+console.log(props.rowData);  
   return (
-    <div className="App">
-        {rowData &&
-        <h3>Athlete profiles:</h3>
-        }     
-        {rowData &&  
-        <div style={{ width: "100%", height: "100%" }}>
-            <div className="grid-wrapper">
-                <div
-                id="myGrid"
-                style={{
-                    boxSizing: "border-box",
-                    height: "100%",
-                    width: "100%"
-                }}
-                className="ag-theme-balham"
-                >
-                <AgGridReact
-                    rowModelType="infinite"
-                    columnDefs={columnDefs}
-                    rowData = {rowData}
-                    onGridReady = {onGridReady}
-                />
-                </div>
-            </div>
-        </div>
-        }
+    <div style={{ width: "100%", height: "100%" }}>
+      <div className="grid-wrapper">
+        <div
+          id="myGrid"
+          style={{
+            boxSizing: "border-box",
+            height: "100%",
+            width: "100%"
+          }}
+          className="ag-theme-balham"
+        >
+        <AgGridReact
+            rowData={props.rowData}
+            onGridReady={props.onGridReady}
+            domLayout={'autoHeight'}
+        >
+            <AgGridColumn headerName="Athlete" field="name"></AgGridColumn>
+            <AgGridColumn headerName="Sport" field="sport"></AgGridColumn>
+            <AgGridColumn headerName="Team" field="team"></AgGridColumn>
+            <AgGridColumn headerName="Description" field="description"></AgGridColumn>
+        </AgGridReact>
+    </div>
+    </div>
     </div>
   );
 }
 
-export default App;
+ProfileList.propTypes = {
+    getGridData: PropTypes.func,
+}
+
+export default ProfileList;

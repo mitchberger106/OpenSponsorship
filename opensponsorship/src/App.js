@@ -1,48 +1,49 @@
 import React, { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
+import { AgGridReact } from 'ag-grid-react';
+import profileService from "./services/profileService";
+import ProfileList from "./ProfileList";
 
-// SERVICES
-import productService from './services/productService';
-
-function App() {
-  const [products, setproducts] = useState(null);
+const App = () => {
+  const [rowData, setRowData] = useState([]);
+  const [gridApi, setGridApi] = useState(null);
+  const [adding, setAdding] = useState(false);
+  const [gridColumnApi, setGridColumnApi] = useState(null);
 
   useEffect(() => {
-    if(!products) {
-      getProducts();
-    }
-  })
+    getGridData();
+  }, []);
 
-  const getProducts = async () => {
-    let res = await productService.getAll();
-    console.log(res);
-    setproducts(res);
+  const getGridData = () => {
+    profileService.getAll().then((res) => {setRowData(res); console.log(res);});
   }
 
-  const renderProduct = product => {
-    return (
-      <li key={product._id} className="list__item product">
-        <h3 className="product__name">{product.name}</h3>
-        <p className="product__description">{product.description}</p>
-      </li>
-    );
-  };
-
-  const createProduct = () => {
-    const product = {name:"food", description:"you can eat it"};
-    productService.create(product);
+  const setGridReady = (params) => {
+    setGridApi(params.api);
+    setGridColumnApi(params.columnApi);
+    console.log(params);
   }
+
+  useEffect(() => {
+    if(gridApi !== null) {
+      var data = rowData;
+      gridApi.setRowData(data);
+    }   
+  }, [rowData]);
 
   return (
     <div className="App">
-      <Button onClick = {createProduct}>Create Product</Button>
-      <ul className="list">
-        {(products && products.length > 0) ? (
-          products.map(product => renderProduct(product))
-        ) : (
-          <p>No products found</p>
-        )}
-      </ul>
+        <h3>Athlete profiles:</h3>
+        <div className = "grid">
+          <ProfileList
+            gridApi={gridApi}
+            getGridData={getGridData}
+            onGridReady={setGridReady}
+            gridColumnApi={gridColumnApi}
+            rowData = {rowData}
+          />
+        </div>
+        <button onClick={() => setAdding(true)}>Add Athlete</button>
     </div>
   );
 }

@@ -3,7 +3,6 @@ import axios from 'axios';
 export default {
   getAll: async () => {
     let res = await axios.get(`/api/profile`);
-    console.log(res);
     return res.data || [];
   },
   create: async (product) => {
