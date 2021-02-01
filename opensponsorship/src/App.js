@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Button from 'react-bootstrap/Button';
 
 // SERVICES
 import productService from './services/productService';
@@ -27,8 +28,14 @@ function App() {
     );
   };
 
+  const createProduct = () => {
+    const product = {name:"food", description:"you can eat it"};
+    productService.create(product);
+  }
+
   return (
     <div className="App">
+      <Button onClick = {createProduct}>Create Product</Button>
       <ul className="list">
         {(products && products.length > 0) ? (
           products.map(product => renderProduct(product))
