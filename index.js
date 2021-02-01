@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 // IMPORT MODELS
 require('./models/Product');
+require('./models/Profile');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 
 //IMPORT ROUTES
 require('./routes/productRoutes')(app);
+require('./routes/profileRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(__dirname + '/opensponsorship/build'));
