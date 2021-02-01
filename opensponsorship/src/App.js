@@ -44,7 +44,7 @@ const App = () => {
             rowData = {rowData}
           />
         </div>
-        <button onClick={() => setAdding(true)}>Add Athlete</button>
+        <Button onClick={() => setAdding(true)}>Add Athlete</Button>
         <ModalMain
           show={adding}
           closeModal={() => setAdding(false)}

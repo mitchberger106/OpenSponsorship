@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
-import { AgGridReact } from 'ag-grid-react';
-import profileService from "./services/profileService";
-import ProfileList from "./ProfileList";
 import { Modal } from 'react-bootstrap'
+import Basic from "./Basic";
+import About from "./About";
+import Summary from "./Summary";
 
 const ModalMain = (props) => {
+
+  const steps = [
+    { id: "basic" },
+    { id: "about" },
+    { id: "summary" },
+  ];
+
+  const [formData, setForm] = useForm(defaultData);
+  const { step, navigation } = useStep({ initialStep: 0, steps });
+  const { id } = step;
+
+  const props = { formData, setForm, navigation };
 
     return(
         <div>
@@ -17,10 +29,24 @@ const ModalMain = (props) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">
-            Large Modal
+            Add Athlete Information
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>...</Modal.Body>
+        {id == "basic" &&
+        <Modal.Body>
+          <Basic {...props} />
+        </Modal.Body>
+        }
+        {id == "summary" &&
+        <Modal.Body>
+          <Summary {...props} />
+        </Modal.Body>
+        }
+        {id == "about" &&
+        <Modal.Body>
+          <About {...props} />
+        </Modal.Body>
+        }
       </Modal>
       </div>
     );
