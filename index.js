@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 // IMPORT MODELS
-require('./models/Product');
 require('./models/Profile');
 
 const app = express();
@@ -16,7 +15,6 @@ mongoose.connect(process.env.MONGODB_URI || `mongodb+srv://mitchberger106:os_use
 app.use(bodyParser.json());
 
 //IMPORT ROUTES
-require('./routes/productRoutes')(app);
 require('./routes/profileRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
